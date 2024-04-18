@@ -1,0 +1,45 @@
+<div class="container vh-100">
+    <div class="row h-100 align-items-center">
+        <div class="col-md-6">
+            <h2>¡Bienvenido al Sistema de Solicitud de Constancia de Inexsitencia del Registro Civil del Estado de Guanajuato!</h2>
+            <p>En este sitio web puedes soliciat tu constancia de inexistencia en linea de manera rapida.</p>
+        </div>
+        <div class="col-md-6">
+            <form class="border p-4 rounded" style="max-width: 400px;" [formGroup]="loginForm">
+
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Correo Electronico</label>
+                    <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+                    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+                        <div *ngIf="email.errors?.required">
+                            El Email es requerido.
+                        </div>
+                        <div *ngIf="email.errors?.email">
+                            El email debe tener un formato valido.
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Contraseña</label>
+                    <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger">
+                        <div *ngIf="password.errors?.required">
+                            El Password es requerido.
+                        </div>
+                        <div *ngIf="password.errors?.minlength">
+                            Email must be at least 4 characters long.
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" (click)="login()" class="btn btn-primary">Iniciar Sesion</button>
+
+                <h3>¿Aún no tienes cuenta?</h3>
+                <p>Registrate en el sistema de citas <a href="/registro">Aquí.</a> </p>
+                <a href="">Olvidaste tu contrseña</a>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+/* Estilos para elementos válidos */
+
+.ng-valid.ng-touched:not(form) {
+    border: 2px solid #42A948;
+    /* Borde verde para elementos válidos */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    /* Transiciones suaves para el cambio de color del borde y el efecto de sombra */
+    box-shadow: 0 0 10px rgba(66, 169, 72, 0.5);
+    /* Efecto de sombra verde */
+}
+
+
+/* Estilos para elementos inválidos */
+
+.ng-invalid.ng-touched:not(form) {
+    border: 2px solid #A94442;
+    /* Borde rojo para elementos inválidos */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    /* Transiciones suaves para el cambio de color del borde y el efecto de sombra */
+    box-shadow: 0 0 10px rgba(169, 66, 66, 0.5);
+    /* Efecto de sombra roja */
+}
