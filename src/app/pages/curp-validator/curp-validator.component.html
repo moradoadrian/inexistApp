@@ -1,0 +1,16 @@
+<p>curp-validator works!</p>
+<!-- curp-validator.component.html -->
+<div>
+    <h2>Validador de CURP</h2>
+    <form (ngSubmit)="validateCurp()">
+        <label for="curpInput">Ingresa un CURP:</label>
+        <input type="text" id="curpInput" name="curp">
+        <button type="submit">Validar</button>
+    </form>
+    <div *ngIf="isValidCurp">
+        <p>El CURP ingresado es válido.</p>
+    </div>
+    <div *ngIf="!isValidCurp">
+        <p>El CURP ingresado no es válido.</p>
+    </div>
+</div>

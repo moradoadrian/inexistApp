@@ -1,12 +1,15 @@
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" rel="stylesheet">
+</head>
 <div class="container vh-100">
     <div class="row h-100 align-items-center">
         <div class="col-md-6">
-            <h2>¡Bienvenido al Sistema de Solicitud de Constancia de Inexsitencia del Registro Civil del Estado de Guanajuato!</h2>
+            <h2>¡Bienvenido a la plataforma digital para la solicitud de constancias de inexistencia del Estado de Guanajuato!</h2>
             <p>En este sitio web puedes soliciat tu constancia de inexistencia en linea de manera rapida.</p>
         </div>
         <div class="col-md-6">
             <form class="border p-4 rounded" style="max-width: 400px;" [formGroup]="loginForm">
-
+                <h3>Iniciar Sesión</h3>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Correo Electronico</label>
                     <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
@@ -38,6 +41,13 @@
 
                 <h3>¿Aún no tienes cuenta?</h3>
                 <p>Registrate en el sistema de citas <a href="/registro">Aquí.</a> </p>
+                <p class="social-text">Puedes registrarte con:</p>
+                <div class="social-media">
+                    <button (click)="registrarseWithGoogle()" class="social-icon" aria-label="Register with Google" style="background-color: #4285F4; color: white; border: none; padding: 10px 20px; border-radius: 4px; font-weight: bold; display: flex; align-items: center; justify-content: center;">
+                        <i class="bi bi-google" style="margin-right: 10px; font-size: 20px;"></i>
+                        Regístrate con Google
+                    </button>
+                </div>
                 <a href="">Olvidaste tu contrseña</a>
             </form>
         </div>

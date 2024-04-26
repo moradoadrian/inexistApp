@@ -10,7 +10,10 @@ import { LoginComponent } from './auth/login/login.component';
 import { NavComponent } from './shared/nav/nav.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { RegistroComponent } from './shared/registro/registro.component'
+import { RegistroComponent } from './shared/registro/registro.component';
+import { ReactiveComponent } from './pages/reactive/reactive.component';
+import { CurpValidatorComponent } from './pages/curp-validator/curp-validator.component';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +23,9 @@ import { RegistroComponent } from './shared/registro/registro.component'
     DashboardComponent,
     LoginComponent,
     NavComponent,
-    RegistroComponent
+    RegistroComponent,
+    ReactiveComponent,
+    CurpValidatorComponent
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/auth/login.service';
 import { LoginRequest } from 'src/app/services/auth/loginRequest';
+import {  AuthService } from 'src/app/services/auth.service'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,10 +11,11 @@ import { LoginRequest } from 'src/app/services/auth/loginRequest';
 })
 export class LoginComponent implements OnInit {
   loginForm=this.formBuilder.group({
-    email:['moradomail@gmail.com', [Validators.required,Validators.email]],
+    email:['', [Validators.required,Validators.email]],
     password:['',Validators.required]
   })
-  constructor(private formBuilder:FormBuilder, private router:Router, private loginService:LoginService) { }
+  authService: any;
+  constructor(private formBuilder:FormBuilder, private _router:Router, private loginService:LoginService) { }
 
   ngOnInit(): void {
   }
@@ -38,7 +40,7 @@ export class LoginComponent implements OnInit {
         },
         complete:() =>{
           console.info("login completo")
-          this.router.navigateByUrl('/inicio')
+          this._router.navigateByUrl('/inicio')
           this.loginForm.reset()
         }
       })
@@ -49,6 +51,52 @@ export class LoginComponent implements OnInit {
       alert("Error al ingresar datos");
 
     }
+  }
+
+  registrarse(){
+    // this.registerForm.controls.oAuth.setValue();
+    // this.registerForm.controls.estaAutenticado.setValue();
+    // this.registerForm.controls.mensaje.setValue();
+    // this.registerForm.controls.token.setValue();
+    console.log(this.loginForm.value);
+    // return;
+    this.authService.register(this.loginForm.value)
+    .subscribe( (response: any) => {
+      console.log(response)
+      sessionStorage.setItem('login', 'true');
+      this._router.navigate(['home']);
+    }),
+    ( (error: any) => console.log(error));
+  }
+
+
+
+  registrarseWithGoogle(){
+    this.loginForm.controls.oAuth.setValue(true);
+    console.log(this.loginForm.value);
+    // return;
+    this.authService.loginWhitGoogle()
+    .then(
+      (res: any) => {
+        console.log(res)
+        this.loginForm.controls.oAuth.setValue(true);
+        this.loginForm.controls.estaAutenticado.setValue(false);
+        this.loginForm.controls.mensaje.setValue("registrado con google");
+        this.loginForm.controls.token.setValue(res.user.accessToken);
+        this.loginForm.controls.correo.setValue(res.user.email);
+        this.loginForm.controls.usuario1.setValue(res.user.displayName);
+
+        console.log(this.loginForm.getRawValue());
+        this.registrarse();
+        // this.registerForm.controls.password.setValue(res.user);
+
+        // this._toolsService.UserPerfil.nombre = res.user.displayName!;
+        // this._toolsService.UserPerfil.correo = res.user.email!;
+        // this._toolsService.UserPerfil.imagen = res.user.photoURL!;
+        // this._router.navigate(['dashboard']);
+      }
+    )
+    .catch( (error: any) => console.log(error))
   }
 
 }
